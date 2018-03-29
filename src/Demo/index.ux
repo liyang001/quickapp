@@ -1,0 +1,121 @@
+<!-- <template>
+  <div class="demo-page">
+    <text class="title">欢迎打开{{title}}</text>
+    <a class="btn center" href="tel:10086">调起电话</a>
+    <a class="btn center" href="sms:10086">调起短信</a>
+    <a class="btn center"  href="mailto:example@xx.com">调起邮件</a>
+    <a class="btn center" href="https://www.baidu.com/">打开网页</a>
+    <input class="btn" type="button" value="跳转到详情页" onclick="routeDetail">
+  </div>
+</template> -->
+<template>
+  <div class="tutorial-page">
+    <!-- tabs组件 -->
+    <tabs>
+      <tab-bar class="tab-bar">
+        <text class="center">首页</text>
+        <text class="center">购物</text>
+        <text class="center">我的</text> 
+      </tab-bar>
+      <tab-content class="tab-content">
+        <div class="tab-content-section">
+            <text class="title">欢迎打开{{title}}</text>
+            <!-- <a class="btn center" href="tel:10086">调起电话</a>
+            <a class="btn center" href="sms:10086">调起短信</a> -->
+            <a class="btn center"  href="mailto:example@xx.com">调起邮件</a>
+            <a class="btn center" href="https://www.baidu.com/">打开网页</a>
+            <input class="btn" type="button" value="跳转到详情页" onclick="routeDetail">
+            <input class="btn" type="button" value="微信支付" onclick="wxhandle">
+            <input class="btn" type="button" value="支付宝支付" onclick="zhbhandle">
+        </div>
+        <div class="tab-content-section">
+          <video class="videstyle" src="http://www.comeonone.com/wxaudio/planet.mp3" poster="http://www.comeonone.com/wxaudio/music4.png"></video>
+        </div> 
+        <div class="tab-content-section">
+          <text>content3</text>
+        </div>
+      </tab-content>
+    </tabs>
+  </div>
+</template>
+
+<style>
+  .demo-page {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .title {
+    font-size: 40px;
+    text-align: center;
+  }
+
+  .btn {
+    width: 550px;
+    height: 86px;
+    margin-top: 75px;
+    border-radius: 43px;
+    background-color: #09ba07;
+    font-size: 30px;
+    color: #ffffff;
+  }
+  .center{
+    text-align: center;
+  }
+  .tab-content-section{
+    flex-direction: column;
+    align-items: center;
+  }
+  .videstyle{
+    width : 80%;
+    height : 50%;
+    border-radius: 50px;
+  }
+</style>
+
+<script>
+  import router from '@system.router'
+  import wxpay from '@service.wxpay'
+  import alipay from '@service.alipay'
+  import audio from '@system.audio'
+  export default {
+    data: {
+      title: '小区管家'
+    },
+    routeDetail () {
+      // 跳转到应用内的某个页面，router用法详见：文档->接口->页面路由
+      router.push ({
+        uri: '/DemoDetail',
+        params : {
+          name : this.title
+        }
+      })
+    },
+    wxhandle(){
+      console.log(wxpay.getType())
+      wxpay.pay({
+        prepayid : 'wx20170101abcdef1234567890',
+        extra : {
+          app_id : '',
+          partner_id : '',
+          package_value :'',
+          nonce_str :'',
+          time_stamp :'',
+          order_sign:'',
+        },
+        success : function(){
+
+        }
+      })
+    },
+    zhbhandle(){
+      alipay.pay({
+        orderInfo :'',
+        callback(res){
+          console.log('callback')
+        }
+      })
+    }
+  }
+</script>

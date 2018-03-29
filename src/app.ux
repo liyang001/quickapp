@@ -1,0 +1,18 @@
+<script>
+  /**
+   * 应用级别的配置，供所有页面公用
+   */
+  import util from './util'
+
+  export default {
+    method1(){
+      console.log("全局方法method1")
+    },
+    showMenu: util.showMenu,
+    createShortcut: util.createShortcut,
+    onCreate () {
+    console.info('Application onCreate')
+  },
+    
+  }
+</script>

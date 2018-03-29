@@ -1,0 +1,53 @@
+{
+  "package": "com.application.demo",
+  "name": "小区管家",
+  "versionName": "1.0.0",
+  "versionCode": "1",
+  "minPlatformVersion": "101",
+  "icon": "/Common/logo.png",
+  "features": [
+    { "name": "system.prompt" },
+    { "name": "system.router" },
+    { "name": "system.shortcut" },
+    {"name": "service.alipay"},
+    {"name": "system.audio"},
+    {"name": "service.wxpay", "params": {"package": "com.application.demo", "sign": "abcdefg", "url": "http://172.16.234.203:12306/Domo"}}
+  ],
+  "permissions": [
+    { "origin": "*" }
+  ],
+  "config": {
+    "logLevel": "debug"
+  },
+  "router": {
+    "entry": "Demo",
+    "pages": {
+      "Demo": {
+        "component": "index"
+      },
+      "DemoDetail": {
+        "component": "index"
+      },
+      "About": {
+        "component": "index"
+      }
+    }
+  },
+  "display": {
+    "titleBarBackgroundColor": "#f2f2f2",
+    "titleBarTextColor": "#414141",
+    "menu": true,
+    "pages": {
+      "Demo": {
+        "titleBarText": "小区管家",
+        "menu": false
+      },
+      "DemoDetail": {
+        "titleBarText": "小区管家"
+      },
+      "About": {
+        "menu": false
+      }
+    }
+  }
+}
